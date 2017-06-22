@@ -1,0 +1,16 @@
+<template name="rowHR">
+    <tr>
+        <td colspan='2'><hr></td>
+    </tr>
+</template>
+
+<template name="rowHeader">
+    <tr>
+        <td colspan='2'><h2>{{title}}</h2></td>
+    </tr>
+</template>
+
+<template name="midRowHeader">
+    {{> rowHR}}
+    {{> rowHeader title = title}}
+</template>

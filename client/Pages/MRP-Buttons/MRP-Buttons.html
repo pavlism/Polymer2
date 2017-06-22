@@ -1,0 +1,132 @@
+<template name="MRPButtonSet">
+    <h2>Info</h2>
+    This set of button can take data from an HTML table and manipulate it in different ways.  
+    They can create cv/excel/pdf files, copy the data to the clip board (tab delimited) and print the table.  
+    These buttons were originally designed to work the &#x3C;mrp-table&#x3E; but have been adapted so they can work with standard HTML tables as well (more testing required here). 
+    Eventually the Copy, Print and PDF button will work with any kind of element.  
+    <br/>
+    These buttons can also be set to work a 2D array of strings.  Using the Data Broker (see brokers) you can setup the button to read a 2D array of string and perform the same options as if it was pointing to an HTML table.
+
+    <table>
+        {{> rowHeader title='Butons With Table'}}
+        <tr>
+            <td class='example'>
+            <mrp-csv-button data-selector="#tableID"></mrp-csv-button>
+            <mrp-excel-button data-selector="#tableID"></mrp-excel-button>
+            <mrp-copy-button data-selector="#tableID"></mrp-copy-button>
+            <mrp-print-button data-selector="#tableID"></mrp-print-button>
+            <mrp-pdf-button data-selector="#tableID"></mrp-pdf-button>
+        </td>
+        <td>
+            {{> MRP_ButtonSet_code1}}
+        </td>
+        </tr>
+        <tr>
+            <td>{{> MRP_ButtonSet_Table}}</td>
+            <td>{{> MRP_Tabel_Code}}</td>    
+        </tr>
+        {{> midRowHeader title='Butons With Data Broker'}}
+        <tr>
+            <td class='example'>
+            <mrp-csv-button data-call="GetSampleData"></mrp-csv-button>
+            <mrp-excel-button data-call="GetSampleData"></mrp-excel-button>
+            <mrp-copy-button data-call="GetSampleData"></mrp-copy-button>
+            <mrp-print-button data-call="GetSampleData"></mrp-print-button>
+            <mrp-pdf-button data-call="GetSampleData"></mrp-pdf-button>
+        </td>
+        <td>
+            {{> MRP_ButtonSet_code1}}
+        </td>
+        </tr>
+    </table>
+    <hr>
+    {{>MRPButtonSet_events}}
+    <hr>
+    {{>MRPButtonSet_TODO}}
+    <br>
+    <br>
+    <br>
+</template>
+
+<template name="MRP_ButtonSet_code1">
+    <h4>Code</h4>
+    <pre>&lt;mrp-csv-button data-selector=&quot;#tableID&quot;&gt;&lt;/mrp-csv-button&gt;
+&lt;mrp-excel-button data-selector=&quot;#tableID&quot;&gt;&lt;/mrp-excel-button&gt;
+&lt;mrp-copy-button data-selector=&quot;#tableID&quot;&gt;&lt;/mrp-copy-button&gt;
+&lt;mrp-print-button data-selector=&quot;#tableID&quot;&gt;&lt;/mrp-print-button&gt;
+&lt;mrp-pdf-button data-selector=&quot;#tableID&quot;&gt;&lt;/mrp-pdf-button&gt;</pre>
+</template>
+
+<template name="MRP_Tabel_Code">
+    <h4>Code</h4>
+    <pre>&lt;table id='table' class = &quot;dataTable&quot;&gt;
+*** Normal HTML Table Code ***
+&lt;/table&gt;</pre>
+</template>
+
+<template name="MRP_ButtonSet_Table">
+
+    <table id='tableID' class = "dataTable">
+        <tr>
+            <th>Company</th>
+            <th>Contact</th>
+            <th>Country</th>
+        </tr>
+        <tr>
+            <td>Alfreds Futterkiste</td>
+            <td>Maria Anders</td>
+            <td>Germany</td>
+        </tr>
+        <tr>
+            <td>Centro comercial Moctezuma</td>
+            <td>Francisco Chang</td>
+            <td>Mexico</td>
+        </tr>
+        <tr>
+            <td>Ernst Handel</td>
+            <td>Roland Mendel</td>
+            <td>Austria</td>
+        </tr>
+        <tr>
+            <td>Island Trading</td>
+            <td>Helen Bennett</td>
+            <td>UK</td>
+        </tr>
+        <tr>
+            <td>Laughing Bacchus Winecellars</td>
+            <td>Yoshi Tannamuri</td>
+            <td>Canada</td>
+        </tr>
+        <tr>
+            <td>Magazzini Alimentari Riuniti</td>
+            <td>Giovanni Rovelli</td>
+            <td>Italy</td>
+        </tr>
+    </table>
+</template>
+
+<template name="MRPButtonSet_TODO">
+    <h3>TODO</h3>
+    <ul>
+        <li>Add in better error handling (if selecto/call don't actaully point to anything)</li>
+        <li>Updated Print, PDF to work better with larger tables</li>
+        <li>Updated Copy, Print, PDF to work with other basic HTML tags and divs</li>
+    </ul>
+</template>
+
+<template name="MRPButtonSet_events">
+    <h2>Events</h2>
+    The buttons are &#x3C;mrp-buttons&#x3E; so their events are the same.  These buttons have an extra ability where they can trigger a Data Call (see brokers).  Simply create a listener and return a 2D array of strings.
+        
+    <H4>Sample Listener</H4>
+    <pre>
+    var tableData = [];
+    
+    tableData.push(['OrderDate','Region','Rep','Total']);
+    tableData.push(['1/6/2016','East','Jones','189.05']);
+    tableData.push(['1/23/2016','Central','Kivell','999.50']);
+
+    DataBroker.listen("GetSampleData",tableData, function(listenerArgs, triggerArgs){
+        return listenerArgs;
+    })</pre>
+</template>

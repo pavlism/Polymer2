@@ -1,0 +1,111 @@
+<template name="MRPAlert">
+    <h2>Info</h2>
+    The alert elements is a nicer looking version of the alert message box.  Its used to display a simple message to the user.  It does not have many theme options yet.<br/>
+    To toggle an alert you have 2 different options.  1 you can set the toggle property to a variable, then change that variable, 1 is on 0 if off.<br/>
+    The second option is to use the on-event and off-even attributes.  Set either of them to a string that is the EventBroker event you want to trigger the alert.  (see <a href="brokers">Brokers</a>)
+    
+    <hr>
+    <table>
+        {{> rowHeader title='Basic <mrp-alert>'}}
+        <tr>
+            <td class='example'>
+                <mrp-button id='toggleBasic'>Toggle Basic</mrp-button>
+                <mrp-alert title="title" message="message" toggle="{{defaultButton}}"></mrp-alert>
+            </td>
+            <td>
+                {{> MRPAlert_code1}}
+            </td>
+        </tr>
+        {{> midRowHeader title='<mrp-alert> with Events'}}
+        <tr>
+            <td class='example'>
+                <mrp-button id='OnEvent'>Turn On</mrp-button>
+                <mrp-button id='OffEvent'>Turn off</mrp-button>
+                <mrp-alert title="title" message="message" on-event="OnEvent_mrp-button_clicked" off-event="OffEvent_mrp-button_clicked"></mrp-alert>
+            </td>
+            <td>
+                {{> MRPAlert_code3}}
+            </td>
+        </tr>
+        {{> midRowHeader title='<mrp-alert> with Timer in seconds'}}
+        <tr>
+            <td class='example'>
+                <mrp-button id='TimerOn'>Turn On</mrp-button>
+                <mrp-alert title="title" message="message" on-event="TimerOn_mrp-button_clicked" timer="5"></mrp-alert>
+            </td>
+            <td>
+                {{> MRPAlert_code4}}
+            </td>
+        </tr>
+        {{> midRowHeader title='<mrp-alert> with ID'}}
+        <tr>
+            <td class='example'>
+                <mrp-button id='toggleID'>Toggle Basic</mrp-button>
+                <mrp-alert title="title" message="message" id='sample' toggle="{{toggleID}}"></mrp-alert>
+            </td>
+            <td>
+                {{> MRPAlert_code2}}
+            </td>
+        </tr>
+    </table>
+    <hr>
+    {{>MRPAlert_events}}
+    <hr>
+    {{>MRPAlert_TODO}}
+    <br>
+    <br>
+    <br>
+</template>
+
+<template name="MRPAlert_code1">
+    <h4>Code</h4>
+    <pre>&lt;mrp-button id='toggleBasic'&gt;Toggle Basic&lt;/mrp-button&gt; 
+&lt;mrp-alert title=&quot;title&quot; message=&quot;message&quot; toggle=&quot;{defaultButton}&quot;&gt;&lt;/mrp-alert&gt;</pre>
+</template>
+
+<template name="MRPAlert_code2">
+    <h4>Code</h4>
+    <pre>&lt;mrp-button id='toggleID'&gt;Toggle Basic&lt;/mrp-button&gt; 
+&lt;mrp-alert title=&quot;title&quot; message=&quot;message&quot; id='sample' toggle=&quot;{toggleID}&quot;&gt;&lt;/mrp-alert&gt;</pre>
+</template>
+
+<template name="MRPAlert_code3">
+    <h4>Code</h4>
+    <pre>&lt;mrp-button id='OnEvent'&gt;Turn On&lt;/mrp-button&gt;
+&lt;mrp-button id='OffEvent'&gt;Turn off&lt;/mrp-button&gt; 
+&lt;mrp-alert title=&quot;title&quot; message=&quot;message&quot; on-event=&quot;OnEvent_mrp-button_clicked&quot; off-event=&quot;OffEvent_mrp-button_clicked&quot;&gt;&lt;/mrp-alert&gt;</pre>
+</template>
+
+<template name="MRPAlert_code4">
+    <h4>Code</h4>
+    <pre>&lt;mrp-button id='TimerOn'&gt;Turn On&lt;/mrp-button&gt; 
+&lt;mrp-alert title=&quot;title&quot; message=&quot;message&quot; on-event=&quot;TimerOn_mrp-button_clicked&quot; timer=&quot;5&quot;&gt;&lt;/mrp-alert&gt;</pre>
+</template>
+
+<template name="MRPAlert_events">
+    <h2>Events</h2>
+    <H4>{ID}_mrp-alert_closed</H4>
+    When an &#x3C;mrp-alert&#x3E; is closed the closed event will fire.  This event will use the ID on the &#x3C;mrp-alert&#x3E; element.
+    
+    <H4>mrp-alert_closed</H4>
+    When an &#x3C;mrp-alert&#x3E; is clicked the closed event will fire.  If the elements does not have an ID or class then this event will fire.
+    
+    <H4>Sample Listener</H4>
+    <pre>
+    EventBroker.listen("mrp-alert_closed", function (listenerArgs, triggerArgs) {
+        console.log('An alert was closed');
+        console.log(triggerArgs);
+    });</pre>
+    
+    <H4>Sample Trigger</H4>
+    <pre>
+    EventBroker.trigger("turnOnAlert_12"});</pre>
+</template>
+
+<template name="MRPAlert_TODO">
+    <h3>TODO</h3>
+    <ul>
+        <li>Add in more options for button combinations</li>
+        <li>Add in more theme options</li>
+    </ul>
+</template>

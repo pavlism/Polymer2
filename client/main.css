@@ -1,0 +1,33 @@
+/* CSS declarations go here */
+hr {
+    border-top: 3px double #8c8b8b;
+}
+
+table {
+    width: 100%;
+}
+
+.example{
+    width: 50%;
+    padding-right: 10px;
+}
+
+body { 
+    padding-top: 10px; 
+}
+
+table.dataTable {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table.dataTable td, table.dataTable th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+table.dataTable tr:nth-child(even) {
+    background-color: #dddddd;
+}

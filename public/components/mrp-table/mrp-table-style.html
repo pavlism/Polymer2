@@ -1,0 +1,128 @@
+<dom-module id="mrp-table-style">
+    <template>
+        <style>            
+            .selectBox{
+                padding: 0px;
+                margin: 0px;
+            }
+            dom-if{
+                display: none;
+            }
+            .sortAsc {
+                margin-left: 10px;
+                border: solid black;
+                border-width: 0 3px 3px 0;
+                display: inline-block;
+                padding: 3px;
+                transform: rotate(-135deg);
+                -webkit-transform: rotate(-135deg);
+            }
+            .sortDesc {
+                margin-left: 10px;
+                border: solid black;
+                border-width: 0 3px 3px 0;
+                display: inline-block;
+                padding: 3px;
+                transform: rotate(45deg);
+                -webkit-transform: rotate(45deg);
+            }
+           
+
+            span.object-toggle {
+                font-style: normal;
+                font-weight: bolder;
+                -webkit-font-smoothing: antialiased;
+                padding-right: 10px;
+                font-size: 14px;
+                color: #8c8c8c;
+                text-shadow: 2px 2px 2px #9d9d9d;
+            }
+
+            span.object-toggle-show {
+                font-style: normal;
+                font-weight: bolder;
+                -webkit-font-smoothing: antialiased;
+                padding-right: 10px;
+                font-size: 14px;
+                color: #8c8c8c;
+                text-shadow: 2px 2px 2px #9d9d9d;
+            }
+
+            span.object-toggle:before {
+                content: "˃";
+            }
+            span.object-toggle-show:before {
+                content: '˅';
+            }
+
+            div.properties{
+                display:none;
+                border-top: 1px solid rgb(221, 221, 221)
+            }
+            div.properties_row{
+                display:table-row;
+            }
+            div.properties_cell{
+                display:table-cell;
+                padding-right: 5px;
+
+            }
+            
+            table td, table th{
+                color: rgb(103, 106, 108);
+                padding: 8px;
+                border: 1px solid #dddddd;
+                text-align: left;
+            } 
+
+            table{
+                border-spacing: 0px;
+                width:100%;
+                margin-bottom: 10px;
+                margin-top: 10px;
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+            .pages{
+                margin-left: 5px;
+            }
+            .text{
+                margin-left: 5px;
+            }
+            table > tbody > tr:nth-of-type(odd) {
+                background-color: #f9f9f9;
+            }
+
+            table > thead > tr > th,
+            table > tbody > tr > th,
+            table > tfoot > tr > th,
+            table > thead > tr > td,
+            table > tbody > tr > td,
+            table > tfoot > tr > td {
+                padding: 8px;
+            }
+
+            table > thead > tr > th,
+            table > tbody > tr > th,
+            table > tfoot > tr > th{
+                border: 1px solid #ddd;
+                border-bottom: 2px solid #ddd;
+            }
+
+            table > thead > tr > td,
+            table > tbody > tr > td,
+            table > tfoot > tr > td {
+                border: 1px solid #ddd;
+            }
+
+            table > tbody > tr:hover {
+                background-color: #e8e8e8;
+            }
+            table > tbody > tr.selected{
+                background-color: #efefef;
+            }
+            
+            
+        </style>
+    </template>
+</dom-module>

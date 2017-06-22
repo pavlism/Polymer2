@@ -1,0 +1,123 @@
+<template name="MRPButton">
+    <h2>Info</h2>
+    A simple button with a specific look and feel.
+    
+    <table>
+        {{> rowHeader title='Default <mrp-button>'}}
+        <tr>
+            <td class='example'>
+                <mrp-button>default</mrp-button>
+            </td>
+        <td>
+            {{> MRP_Button_code1}}
+        </td>
+        </tr>
+        {{> midRowHeader title='<mrp-button> Colors'}}
+        <tr>
+            <td class='example'>
+                <mrp-button primary>primary</mrp-button>
+                <mrp-button success>success</mrp-button>
+                <mrp-button info>info</mrp-button>
+                <mrp-button warning>warning</mrp-button>
+                <mrp-button danger>danger</mrp-button>
+            </td>
+        <td>
+            {{> MRP_Button_code2}}
+        </td>
+        </tr>
+        {{> midRowHeader title='<mrp-button> Sizes'}}
+        <tr>
+            <td class='example'>
+                <mrp-button large>large</mrp-button>
+                <mrp-button>default</mrp-button>
+                <mrp-button small info>small</mrp-button>
+                <mrp-button mini primary>mini</mrp-button>
+            </td>
+        <td>
+            {{> MRP_Button_code3}}
+        </td>
+        </tr>
+        {{> midRowHeader title='<mrp-button> with ID'}}
+        <tr>
+            <td class='example'>
+                <mrp-button id='sample'>sample</mrp-button>
+            </td>
+        <td>
+            {{> MRP_Button_code4}}
+        </td>
+        </tr>
+        {{> midRowHeader title='<mrp-button>s with Class'}}
+        <tr>
+            <td class='example'>
+                <mrp-button class='sampleClass'>sampleClass 1</mrp-button>
+                <mrp-button class='sampleClass'>sampleClass 2</mrp-button>
+                <mrp-button class='sampleClass'>sampleClass 3</mrp-button>
+            </td>
+        <td>
+            {{> MRP_Button_code5}}
+        </td>
+        </tr>
+        {{> rowHR}}
+    </table>
+    {{>MRP_Button_events}}
+    <br>
+    <br>
+    <br>
+</template>
+
+<template name="MRP_Button_code1">
+    <h4>Code</h4>
+    <pre>&#x3C;mrp-button&#x3E;default&#x3C;/mrp-button&#x3E;</pre>
+</template>
+
+<template name="MRP_Button_code2">
+    <h4>Code</h4>
+    <pre>&#x3C;mrp-button primary&#x3E;primary&#x3C;/mrp-button&#x3E;</pre>
+    <pre>&#x3C;mrp-button success&#x3E;success&#x3C;/mrp-button&#x3E;</pre>
+    <pre>&#x3C;mrp-button info&#x3E;info&#x3C;/mrp-button&#x3E;</pre>
+    <pre>&#x3C;mrp-button warning&#x3E;warning&#x3C;/mrp-button&#x3E;</pre>
+    <pre>&#x3C;mrp-button danger&#x3E;danger&#x3C;/mrp-button&#x3E;</pre>
+</template>
+
+<template name="MRP_Button_code3">
+    <h4>Code</h4>
+    <pre>&#x3C;mrp-button large&#x3E;large&#x3C;/mrp-button&#x3E;</pre>
+    <pre>&#x3C;mrp-button&#x3E;default&#x3C;/mrp-button&#x3E;</pre>
+    <pre>&#x3C;mrp-button small&#x3E;small&#x3C;/mrp-button&#x3E;</pre>
+    <pre>&#x3C;mrp-button mini&#x3E;mini&#x3C;/mrp-button&#x3E;</pre>
+</template>
+
+<template name="MRP_Button_code4">
+    <h4>Code</h4>
+    <pre>&#x3C;mrp-button id='sample'&#x3E;sample&#x3C;/mrp-button&#x3E;</pre>
+</template>
+
+<template name="MRP_Button_code5">
+    <h4>Code</h4>
+    <pre>&#x3C;mrp-button class='sampleClass'&#x3E;sampleClass 1&#x3C;/mrp-button&#x3E;
+&#x3C;mrp-button class='sampleClass'&#x3E;sampleClass 2&#x3C;/mrp-button&#x3E;
+&#x3C;mrp-button class='sampleClass'&#x3E;sampleClass 3&#x3C;/mrp-button&#x3E;</pre>
+</template>
+
+
+
+<template name="MRP_Button_events">
+    <h2>Events</h2>
+    Open the console window and click an &#x3C;mrp-button&#x3E; to see an examples of it's events.
+    
+    <H4>{ID}_mrp-button_clicked</H4>
+    When an &#x3C;mrp-button&#x3E; is clicked the clicked event will fire.  This event will use the ID on the &#x3C;mrp-button&#x3E; element.
+    
+    <H4>{class}_mrp-button_clicked</H4>
+    When an &#x3C;mrp-button&#x3E; is clicked the clicked event will fire.  This event will use the Class on the &#x3C;mrp-button&#x3E; element.
+    
+    <H4>mrp-button_clicked</H4>
+    When an &#x3C;mrp-button&#x3E; is clicked the clicked event will fire.  If the elements does not have an ID or class then this event will fire.
+    
+    <H4>Sample Listener</H4>
+    <pre>
+    EventBroker.listen("mrp-button_clicked", function (listenerArgs, triggerArgs) {
+        console.log('A button was clicked');
+        console.log(triggerArgs);
+    });</pre>
+</template>

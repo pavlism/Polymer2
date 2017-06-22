@@ -1,0 +1,235 @@
+<template name="MRPTable">
+    <h2>Info</h2>
+    The table element requires an ID, and a 2D array of data passed in.  The first row of the array will become the headers.  Each other row will become the data.<br>
+    No css styling is required because it's all done inside of the element itself.
+    
+    <table>
+        {{> rowHeader title='Basic mrp-table'}}
+        <tr>
+            <td class='example'>
+                <mrp-table data='{{tableData}}' id='Table1' Basic></mrp-table>
+            </td>
+        <td>
+            {{> MRP_Table_code1}}
+        </td>
+        </tr>
+        {{> midRowHeader title='mrp-table With Footer'}}
+        <tr>
+            <td class='example'>
+                <mrp-table data='{{tableData}}' id='Table2' footer></mrp-table>
+            </td>
+        <td>
+            {{> MRP_Table_code2}}
+        </td>
+        </tr>
+        {{> midRowHeader title='mrp-table With Sortable'}}
+        <tr>
+            <td class='example'>
+                <mrp-table data='{{tableData}}' id='Table3' sortable></mrp-table>
+            </td>
+        <td>
+            {{> MRP_Table_code3}}
+        </td>
+        </tr>
+        {{> midRowHeader title='mrp-table With search'}}
+        <tr>
+            <td class='example'>
+                <mrp-table data='{{tableData}}' id='Table4' search></mrp-table>
+            </td>
+        <td>
+            {{> MRP_Table_code4}}
+        </td>
+        </tr>
+        {{> midRowHeader title='mrp-table With Buttons'}}
+        <tr>
+            <td class='example'>
+                <mrp-table data='{{tableData}}' id='Table5' buttons></mrp-table>
+            </td>
+        <td>
+            {{> MRP_Table_code5}}
+        </td>
+        </tr>
+        {{> midRowHeader title='mrp-table With Pages'}}
+        <tr>
+            <td class='example'>
+                <mrp-table data='{{tableData2}}' id='Table6' pages></mrp-table>
+            </td>
+        <td>
+            {{> MRP_Table_code6}}
+        </td>
+        </tr>
+        {{> midRowHeader title='mrp-table With CheckBoxes'}}
+        <tr>
+            <td class='example'>
+                <mrp-table data='{{tableData}}' id='Table6' select></mrp-table>
+            </td>
+        <td>
+            {{> MRP_Table_code11}}
+        </td>
+        </tr>
+        {{> midRowHeader title='mrp-table With Objects'}}
+        <tr>
+            <td class='example'>
+                <mrp-table data='{{tableData3}}' id='Table8' Basic></mrp-table>
+            </td>
+        <td>
+            {{> MRP_Table_code9}}
+        </td>
+        </tr>
+        {{> midRowHeader title='mrp-table With Buttons'}}
+        <tr>
+            <td class='example'>
+                <mrp-table data='{{tableData4}}' id='Table9' Basic></mrp-table>
+            </td>
+        <td>
+            {{> MRP_Table_code8}}
+        </td>
+        </tr>
+        {{> midRowHeader title='mrp-table With Links'}}
+        <tr>
+            <td class='example'>
+                <mrp-table data='{{tableData5}}' id='Table10' Basic></mrp-table>
+            </td>
+        <td>
+            {{> MRP_Table_code10}}
+        </td>
+        </tr>
+        {{> midRowHeader title='mrp-table With Everything'}}
+        <tr>
+            <td class='example'>
+                <mrp-table data='{{tableData6}}' id='Table7' buttons select pages sortable search></mrp-table>
+            </td>
+        <td>
+            {{> MRP_Table_code7}}
+        </td>
+        </tr>
+        {{> rowHR}}
+    </table>
+    {{>MRP_mrpTable_events}}
+    <hr>
+    {{>MRP_Table_TODO}}
+    <br>
+    <br>
+    <br>
+</template>
+
+<template name="MRP_Table_code1">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;mrp-table data=&#x27;{2DArray}&#x27; id=&#x27;Table1&#x27; Basic &#x3E;&#x3C;/mrp-table&#x3E;</pre>
+</template>
+
+<template name="MRP_Table_code2">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;mrp-table data=&#x27;{2DArray}&#x27; id=&#x27;Table2&#x27; footer&#x3E;&#x3C;/mrp-table&#x3E;</pre>
+</template>
+
+<template name="MRP_Table_code3">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;mrp-table data=&#x27;{2DArray}&#x27; id=&#x27;Table2&#x27; sortable&#x3E;&#x3C;/mrp-table&#x3E;</pre>
+</template>
+
+<template name="MRP_Table_code4">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;mrp-table data=&#x27;{2DArray}&#x27; id=&#x27;Table2&#x27; search&#x3E;&#x3C;/mrp-table&#x3E;</pre>
+</template>
+
+<template name="MRP_Table_code5">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;mrp-table data=&#x27;{2DArray}&#x27; id=&#x27;Table2&#x27; buttons&#x3E;&#x3C;/mrp-table&#x3E;</pre>
+</template>
+
+<template name="MRP_Table_code6">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;mrp-table data=&#x27;{2DArray}&#x27; id=&#x27;Table2&#x27; pages&#x3E;&#x3C;/mrp-table&#x3E;</pre>
+</template>
+
+<template name="MRP_Table_code7">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;mrp-table data=&#x27;{2DArray}&#x27; id=&#x27;Table7&#x27; buttons select pages sortable search&#x3E;&#x3C;/mrp-table&#x3E;</pre>
+</template>
+
+<template name="MRP_Table_code8">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;mrp-table data=&#x27;{2DArray}&#x27; id=&#x27;Table1&#x27; Basic &#x3E;&#x3C;/mrp-table&#x3E;
+    Simply add a button object, or array of buttons to the 2D array.
+    Button Array Example:
+    {buttons:[{color:MRPButton.colors.info, text:'edit'},{color:MRPButton.colors.danger, text:'delete'}]};
+    Each button will become a <a href='MRP_Button'>&lt;mrp-button&gt;</a>.
+    You can use MRPButton.propertiesObj() to get an example button object.
+    Each button object can have and id, class, text, size and color. </pre>
+</template>
+
+<template name="MRP_Table_code9">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;mrp-table data=&#x27;{2DArray}&#x27; id=&#x27;Table1&#x27; Basic &#x3E;&#x3C;/mrp-table&#x3E;
+    Simply add an object to the 2D array.
+    Object Example:
+    {title:'Mark', prop:{Company:'MRP inc', phone:'519-768-4521'}}
+    The title will be displayed by default.  When the user clicks on the cell the propr object will appear.</pre>
+</template>
+
+<template name="MRP_Table_code10">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;mrp-table data=&#x27;{2DArray}&#x27; id=&#x27;Table1&#x27; Basic &#x3E;&#x3C;/mrp-table&#x3E;
+    Simply add a link object to the 2D array.
+    Link Object Example:
+    {link:{href:'http//www.google.ca',text:'google'}}
+    Each link object requires an href and text properties</pre>
+</template>
+
+<template name="MRP_Table_code11">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;mrp-table data=&#x27;{2DArray}&#x27; id=&#x27;Table2&#x27; select&#x3E;&#x3C;/mrp-table&#x3E;</pre>
+</template>
+
+<template name="MRP_mrpTable_events">
+    <h2>Events</h2>
+    <H4>{ID}_mrp-table_clicked</H4>
+    When an &#x3C;mrp-table&#x3E; is clicked the clicked event will fire.  This event will use the ID on the &#x3C;mrp-table&#x3E; element.
+    
+    <H4>{class}_mrp-table_clicked</H4>
+    When an &#x3C;mrp-table&#x3E; is clicked the clicked event will fire.  This event will use the Class on the &#x3C;mrp-table&#x3E; element.
+    
+    <H4>mrp-table_clicked</H4>
+    When an &#x3C;mrp-table&#x3E; is clicked the clicked event will fire.  If the elements does not have an ID or class then this event will fire.
+    
+    <H4>{ID}_mrp-table_dblclicked</H4>
+    When an &#x3C;mrp-table&#x3E; is double clicked the clicked event will fire.  This event will use the ID on the &#x3C;mrp-table&#x3E; element.
+    
+    <H4>{class}_mrp-table_dblclicked</H4>
+    When an &#x3C;mrp-table&#x3E; is double clicked the clicked event will fire.  This event will use the Class on the &#x3C;mrp-table&#x3E; element.
+    
+    <H4>mrp-table_dblclicked</H4>
+    When an &#x3C;mrp-table&#x3E; is double clicked the clicked event will fire.  If the elements does not have an ID or class then this event will fire.   
+    
+    <H4>Sample Listener</H4>
+    <pre>
+    EventBroker.listen("tableID_mrp-table_dblclicked", function (listenerArgs, triggerArgs) {
+        console.log('A button was clicked');
+        console.log(triggerArgs);
+    });</pre>
+    
+    <h2>Data Calls</h2>
+    <H4>{ID}_CurrentData</H4>
+    Triggering the Current Data, data call will return a 2D array that represent the current data after being filtered by the search.  The ID will be the ID of the &#x3C;mrp-table&#x3E; element.
+    
+    <H4>{ID}_CurrentTableElement</H4>
+    Triggering the Current Data, data call will return the HTML table object inside of the &#x3C;/mrp-table&#x3E;.  The ID will be the ID of the &#x3C;mrp-table&#x3E; element.
+    <H4>Sample Trigger</H4>
+    <pre>
+    var tableData = DataBroker.trigger("tableID_CurrentTableElement",{})</pre>
+</template>
+
+<template name="MRP_Table_TODO">
+</template>

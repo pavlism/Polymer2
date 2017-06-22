@@ -1,0 +1,39 @@
+<template name='layout'>
+    <!-- The default layout for every page, it puts the navigation on the top and the rest "yield" on the bottom-->
+    <div class="container">
+        {{>navigation}}
+    </div>
+    <div class="container">
+        {{>yield}}
+    </div>
+</template>
+
+<template name='navigation'>
+    <!-- The template used at the top of the page-->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <h1>Polymer 2.0 Components</h1>
+            </div>
+        </div>
+        {{>navigation_navbar}}
+    </nav>
+</template>
+
+<template name='navigation_navbar'>
+    <!-- The navigation bar used to move from one page to another-->
+    <div>
+        <ul class="nav navbar-nav">
+            <li id='navHome' class="active"><a href="{{pathFor 'Home'}}">Home</a></li>
+            <li><a href="{{pathFor 'MRP_Table'}}">&#x3C;mrp-table&#x3E;</a></li>
+            <li><a href="{{pathFor 'MRPButton'}}">&#x3C;mrp-button&#x3E;</a></li>
+            <li><a href="{{pathFor 'MRPCheckBox'}}">&#x3C;mrp-check-box&#x3E;</a></li>
+            <li><a href="{{pathFor 'MRPTextBox'}}">&#x3C;mrp-text-box&#x3E;</a></li>
+            <li><a href="{{pathFor 'MRPDropDown'}}">&#x3C;mrp-drop-down&#x3E;</a></li>
+            <li><a href="{{pathFor 'MRPAlert'}}">&#x3C;mrp-alert&#x3E;</a></li>
+            <li><a href="{{pathFor 'MRPButtonSet'}}">MRP Button Set</a></li>
+            <li><a href="{{pathFor 'Brokers'}}">Brokers</a></li>
+            <li><a href="{{pathFor 'Dev'}}">Dev</a></li>
+        </ul>
+    </div>
+</template>    

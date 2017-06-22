@@ -1,0 +1,108 @@
+<template name="MRPTextBox">
+    <h2>Info</h2>
+    This is basically the text with a regex based validation.
+    <hr>
+    <table>
+        {{> rowHeader title='Basic <mrp-text-box>'}}
+        <tr>
+            <td class='example'>
+                <mrp-text-box></mrp-text-box>
+            </td>
+            <td>
+                {{> MRPTextBox_code1}}
+            </td>
+        </tr>
+        {{> midRowHeader title='<mrp-text-box> with Regex'}}
+        <tr>
+            <td class='example'>
+                <mrp-text-box regex="\b\d{3}[-.]?\d{3}[-.]?\d{4}\b" error-msg="Not a phone number."></mrp-text-box>
+            </td>
+            <td>
+                {{> MRPTextBox_code3}}
+            </td>
+        </tr>
+        {{> midRowHeader title='<mrp-text-box> with Placeholder'}}
+        <tr>
+            <td class='example'>
+                <mrp-text-box placeholder="Type Here"></mrp-text-box>
+            </td>
+            <td>
+                {{> MRPTextBox_code4}}
+            </td>
+        </tr>
+        {{> midRowHeader title='<mrp-text-box> with ID'}}
+        <tr>
+            <td class='example'>
+                <mrp-text-box id='sample'></mrp-text-box>
+            </td>
+            <td>
+                {{> MRPTextBox_code2}}
+            </td>
+        </tr>
+        {{> midRowHeader title='<mrp-text-box> with Class'}}
+        <tr>
+            <td class='example'>
+                <mrp-text-box class='sampleClass'></mrp-text-box>
+                <mrp-text-box class='sampleClass'></mrp-text-box>
+                <mrp-text-box class='sampleClass'></mrp-text-box>
+            </td>
+            <td>
+                {{> MRPTextBox_code5}}
+            </td>
+        </tr>
+    </table>
+    <hr>
+    {{>MRPTextBox_events}}
+    <br>
+    <br>
+    <br>
+</template>
+
+<template name="MRPTextBox_code1">
+    <h4>Code</h4>
+    <pre>&lt;mrp-text-box&gt;&lt;/mrp-text-box&gt;</pre>
+</template>
+
+<template name="MRPTextBox_code2">
+    <h4>Code</h4>
+    <pre>&lt;mrp-text-box id=&apos;sample&apos;&gt;&lt;/mrp-text-box&gt;</pre>
+</template>
+
+<template name="MRPTextBox_code3">
+    <h4>Code</h4>
+    <pre>&lt;mrp-text-box regex="\b\d{3}[-.]?\d{3}[-.]?\d{4}\b" error-msg="Not a phone number."&lt;/mrp-text-box&gt;</pre>
+</template>
+
+<template name="MRPTextBox_code4">
+    <h4>Code</h4>
+    <pre>&lt;mrp-text-box placeholder=&apos;Type Here&apos;&gt;&lt;/mrp-text-box&gt;</pre>
+</template>
+
+<template name="MRPTextBox_code5">
+    <h4>Code</h4>
+    <pre>&lt;mrp-text-box class=&apos;sampleClass&apos;&gt;&lt;/mrp-text-box&gt;
+&lt;mrp-text-box class=&apos;sampleClass&apos;&gt;&lt;/mrp-text-box&gt;
+&lt;mrp-text-box class=&apos;sampleClass&apos;&gt;&lt;/mrp-text-box&gt;
+    </pre>
+</template>
+
+<template name="MRPTextBox_events">
+    <h2>Events</h2>
+    Open the console window and change value of an &#x3C;mrp-text-box&#x3E; to see an examples of it's events.
+    
+    <H4>{ID}_mrp-text-box_changed</H4>
+    When an &#x3C;mrp-text-box&#x3E; has it's value changed the changed event will fire.  This event will use the ID on the &#x3C;mrp-text-box&#x3E; element.<br>    
+    
+    <H4>{class}_mrp-text-box_changed</H4>
+    When an &#x3C;mrp-text-box&#x3E; has it's value changed the changed event will fire.  This event will use the Class on the &#x3C;mrp-text-box&#x3E; element.
+    
+    <H4>mrp-text-box_changed</H4>
+    When an &#x3C;mrp-text-box&#x3E; has it's value changed the changed event will fire.  If the elements does not have an ID or class then this event will fire.
+    
+    <H4>Sample Listener</H4>
+    <pre>
+    EventBroker.listen("mrp-text-box_clicked", function (listenerArgs, triggerArgs) {
+        console.log('a mrp-text-box box was clicked');
+        console.log(triggerArgs);
+    });</pre>
+</template>

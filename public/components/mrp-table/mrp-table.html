@@ -1,0 +1,108 @@
+<script src="../Libs/logger.js"></script>
+<script src="../Libs/JSLIB.js"></script>
+<script src="../Libs/Brokers.js"></script>
+<script src="../Libs/stringEXT.js"></script>
+<script src="../Libs/PolymerLib.js"></script>
+<link rel="import" href="mrp-table-style.html">
+<link rel="import" href="../mrp-button-set/mrp-csv-button/mrp-csv-button.html">
+<link rel="import" href="../mrp-button-set/mrp-excel-button/mrp-excel-button.html">
+<link rel="import" href="../mrp-button-set/mrp-copy-button/mrp-copy-button.html">
+<link rel="import" href="../mrp-button-set/mrp-print-button/mrp-print-button.html">
+<link rel="import" href="../mrp-button-set/mrp-pdf-button/mrp-pdf-button.html">
+<link rel="import" href="../mrp-check-box/mrp-check-box.html">
+<link rel="import" href="../mrp-text-area/mrp-text-area.html">
+
+<dom-module id="mrp-table">
+    <template>
+        <style include="mrp-table-style"></style>
+        
+        <template is="dom-if" if="[[search]]">
+            <span class="text"><b>Search:</b></span><mrp-text-box type="text" name="search" on-keyup="keyup"></mrp-text-box>
+        </template>
+        
+        <template is="dom-if" if="[[buttons]]">
+            <mrp-csv-button data-call="[[id]]_CurrentTableElement"></mrp-csv-button>
+            <mrp-excel-button data-call="[[id]]_CurrentTableElement"></mrp-excel-button>
+            <mrp-copy-button data-call="[[id]]_CurrentTableElement"></mrp-copy-button>
+            <mrp-print-button data-call="[[id]]_CurrentTableElement"></mrp-print-button>
+            <mrp-pdf-button data-call="[[id]]_CurrentTableElement"></mrp-pdf-button>
+        </template>
+        
+        <table id="[[id]]_table" class$="[[class]]" on-click='handleClick' on-double-click="handleDblClick">
+            <thead>
+                <tr>
+                    <template is="dom-if" if="[[select]]">
+                        <th class='selectBox'></th>
+                    </template>
+                    <template is="dom-repeat" items="[[getHeader(data)]]">
+                        <th>[[item]]<i></i></th>
+                    </template>
+                </tr>
+            </thead>
+            <tbody>
+                <template is="dom-repeat" items="{{data}}" as="row" filter="{{searchFilter(searchString, data)}}" index-as="row_no" observe="searchString">
+                    <template is="dom-if" if="{{showRow(row_no,0,pageListValue, currentPage)}}">
+                        <tr>
+                            <template is="dom-if" if="[[select]]">
+                                <td class='selectBox'><mrp-check-box class="[[id]]_checkBox_" table-row="[[row_no]]"></mrp-check-box></td>
+                            </template>
+                            <template is="dom-repeat" items="{{row}}" as="cell">
+                                <td>
+                                    <template is="dom-if" if="[[matchCellType(cell, 'cell')]]">
+                                        [[cell]]
+                                    </template>
+                                    <template is="dom-if" if="![[matchCellType(cell, 'cell')]]">
+                                        <template is="dom-if" if="[[matchCellType(cell, 'buttons')]]">
+                                            <template is="dom-repeat" items="[[cell.buttons]]" as="button">
+                                                <mrp-button properties-obj ="[[button]]" table-row="[[row_no]]">[[button.text]]</mrp-button>
+                                            </template>
+                                        </template>
+                                        <template is="dom-if" if="[[matchCellType(cell, 'button')]]">
+                                            <mrp-button properties-obj ="[[cell.button]]" table-row="[[row_no]]">[[cell.button.text]]</mrp-button>
+                                        </template>
+                                        <template is="dom-if" if="[[matchCellType(cell, 'object')]]">
+                                            <span class="object-toggle"></span>[[cell.title]]
+                                            <div class="properties">
+                                                <template is="dom-repeat" items="[[getProps(cell)]]">
+                                                    <div class="properties_row"><div class="properties_cell"><b>[[item.title]]:</b></div><div style="display: table-cell">[[item.val]]</div></div>
+                                                </template>
+                                            </div>
+                                        </template>
+                                        <template is="dom-if" if="[[matchCellType(cell, 'link')]]">
+                                            <a target="_blank" href='[[cell.link.href]]'>[[cell.link.text]]</a>
+                                        </template>
+                                        <template is="dom-if" if="[[matchCellType(cell, 'textArea')]]">
+                                            <mrp-text-area properties-obj ="[[cell.textArea]]" table-row="[[row_no]]"></mrp-text-area>
+                                        </template>
+                                    </template>                    
+                                </td>
+                            </template>
+                        </tr>
+                    </template>
+                </template>
+            
+                <template is="dom-if" if="[[footer]]">
+                    <tr>
+                        <template is="dom-if" if="[[select]]">
+                            <th class='selectBox'></th>
+                        </template>
+                        <template is="dom-repeat" items="[[getHeader(data)]]">
+                            <th>[[item]]<i></i></th>
+                        </template>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <template is="dom-if" if="[[pages]]">
+            <div class='pages'>
+                <mrp-button on-click="handleClick">Previous</mrp-button>
+                <template is="dom-repeat" items="[[getPages(maxLength,pageListValue)]]">
+                    <template is="dom-if" if="[[isCurrentPage(index, currentPage)]]"><mrp-button on-click="handleClick" class="primary">[[item]]</mrp-button></template>
+                    <template is="dom-if" if="[[!isCurrentPage(index, currentPage)]]"><mrp-button on-click="handleClick">[[item]]</mrp-button></template>
+                </template>
+                <mrp-button on-click="handleClick">Next</mrp-button>
+            </div>
+        </template>
+    </template>
+    <script src="mrp-table.js" type="text/javascript"></script>
+</dom-module>

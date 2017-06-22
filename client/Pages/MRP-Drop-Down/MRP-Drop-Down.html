@@ -1,0 +1,78 @@
+<template name="MRPDropDown">
+    <h2>Info</h2>
+    This is basically the select element that has a list attribute, which accepts a 1D array
+    <hr>
+    <table>
+        {{> rowHeader title='Basic <mrp-drop-down>'}}
+        <tr>
+            <td class='example'>
+                <mrp-drop-down list="{{list}}"></mrp-drop-down>
+            </td>
+            <td>
+                {{> MRPDropDown_code1}}
+            </td>
+        </tr>
+        {{> midRowHeader title='<mrp-drop-down> with ID'}}
+        <tr>
+            <td class='example'>
+                <mrp-drop-down list='["one","2","3"]' id='sample'></mrp-drop-down>
+            </td>
+            <td>
+                {{> MRPDropDown_code2}}
+            </td>
+        </tr>
+        {{> midRowHeader title='<mrp-drop-down> with Class'}}
+        <tr>
+            <td class='example'>
+                <mrp-drop-down list='["1","two","three"]' class='sampleClass'></mrp-drop-down>
+                <mrp-drop-down list='["2","two","three"]' class='sampleClass'></mrp-drop-down>
+                <mrp-drop-down list='["3","two","three"]' class='sampleClass'></mrp-drop-down>
+            </td>
+            <td>
+                {{> MRPDropDown_code3}}
+            </td>
+        </tr>
+    </table>
+    <hr>
+    {{>MRPDropDown_events}}
+    <br>
+    <br>
+    <br>
+</template>
+
+<template name="MRPDropDown_code1">
+    <h4>Code</h4>
+    <pre>&lt;mrp-drop-down list=&apos;{list}&apos; &gt;&lt;/mrp-drop-down&gt;</pre>
+</template>
+
+<template name="MRPDropDown_code2">
+    <h4>Code</h4>
+    <pre>&lt;mrp-drop-down list=&apos;["one","2","3"]&apos; id=&apos;sample&apos;&gt;&lt;/mrp-drop-down&gt;</pre>
+</template>
+
+<template name="MRPDropDown_code3">
+    <h4>Code</h4>
+    <pre>&lt;mrp-drop-down list=&apos;["1","two","three"]&apos; class=&apos;sampleClass&apos;&gt;&lt;/mrp-drop-down&gt;</pre>
+</template>
+
+<template name="MRPDropDown_events">
+    <h2>Events</h2>
+    Open the console window and change value of an &#x3C;mrp-drop-down&#x3E; to see an examples of it's events.
+    
+    <H4>{ID}_mrp-drop-down_changed</H4>
+    When an &#x3C;mrp-drop-down&#x3E; has it's value changed the changed event will fire.  This event will use the ID on the &#x3C;mrp-drop-down&#x3E; element.<br>    
+    
+    <H4>{class}_mrp-drop-down_changed</H4>
+    When an &#x3C;mrp-drop-down&#x3E; has it's value changed the changed event will fire.  This event will use the Class on the &#x3C;mrp-drop-down&#x3E; element.
+    
+    <H4>mrp-drop-down_changed</H4>
+    When an &#x3C;mrp-drop-down&#x3E; has it's value changed the changed event will fire.  If the elements does not have an ID or class then this event will fire.
+    
+    <H4>Sample Listener</H4>
+    <pre>
+    EventBroker.listen("mrp-drop-down_clicked", function (listenerArgs, triggerArgs) {
+        console.log('a mrp-drop-down box was clicked');
+        console.log(triggerArgs);
+    });</pre>
+    
+</template>

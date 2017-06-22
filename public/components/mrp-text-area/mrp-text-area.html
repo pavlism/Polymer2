@@ -1,0 +1,24 @@
+<script src="../Libs/logger.js"></script>
+<script src="../Libs/JSLIB.js"></script>
+<script src="../Libs/Brokers.js"></script>
+<script src="../Libs/stringEXT.js"></script>
+<script src="../Libs/PolymerLib.js"></script>
+<link rel="import" href="mrp-text-area-style.html">
+
+<dom-module id="mrp-text-area">
+
+  <template>
+      <style include="mrp-text-area-style"></style>
+      <div>
+      <template is="dom-if" if="{{isInvalid(validation)}}">
+          <textarea on-blur="changed" type="[[type]]" id="[[id]]" class$="error [[class]]" rows="[[rows]]" cols="[[cols]]" valid$=[[validation]] placeholder$=[[placeholder]]>[[text]]</textarea>
+          <br/>
+          <span>[[errorMsg]]</span>
+      </template>
+      <template is="dom-if" if="{{!isInvalid(validation)}}">
+          <textarea on-blur="changed" type="[[type]]" id="[[id]]" class$="[[class]]" rows="[[rows]]" cols="[[cols]]" valid$=[[validation]] placeholder$=[[placeholder]]>[[text]]</textarea>
+      </template>
+          </div>
+  </template>
+    <script src="mrp-text-area.js" type="text/javascript"></script>
+</dom-module>
