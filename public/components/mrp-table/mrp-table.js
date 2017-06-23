@@ -1,6 +1,6 @@
 class MRPTable extends Polymer.Element {
-    
-    static get log(){
+
+    static get log() {
         return new Logger('MRPTable.js', CLL.warn);
     }
     static get is() {
@@ -49,14 +49,14 @@ class MRPTable extends Polymer.Element {
             //hihlight the row
             var rowNum = triggerArgs.tableRow;
             var row = $(listenerArgs)[0].shadowRoot.querySelectorAll('tr')[rowNum];
-            
-            if(triggerArgs.isChecked){
+
+            if (triggerArgs.isChecked) {
                 $(row).addClass('selected');
-            }else{
+            } else {
                 $(row).removeClass('selected');
             }
         });
-        
+
 
     }
 
@@ -95,7 +95,7 @@ class MRPTable extends Polymer.Element {
                 return false;
             } else if (Lib.JS.isDefined(cell.link)) {
                 if (cellType === 'link') {
-                    if(cell.link.href.substr(0,4) !=='http'){
+                    if (cell.link.href.substr(0, 4) !== 'http') {
                         MRPTable.log.warn('The link href:' + cell.link.href + ' might need to start with http:// or https://');
                     }
                     return true;
@@ -212,7 +212,7 @@ class MRPTable extends Polymer.Element {
             return pages;
         }
 
-        for (var pageCounter = 1; pageCounter <= Math.ceil((maxLength-1) / pageSize); pageCounter++) {
+        for (var pageCounter = 1; pageCounter <= Math.ceil((maxLength - 1) / pageSize); pageCounter++) {
             pages.push(pageCounter);
         }
 
@@ -224,18 +224,21 @@ class MRPTable extends Polymer.Element {
         return pages;
     }
     handleClick(event) {
-        if(this.get('isDblClick') ===1){
+        if (this.get('isDblClick') === 1) {
             this.set('isDblClick', 2);
             this.handleDblClick(event);
             return true;
         }
-        
+
         this.set('isDblClick', 1);
+        var checkForDoubleClick = true;
 
         if ($(event.target).is('th') && this.get('sortable')) {
             this.handleSort(event, this);
+            checkForDoubleClick = false;
         } else if ($(event.target).is('mrp-button') || $(event.target).parent().is('mrp-button')) {
             this.handleButtons(event);
+            checkForDoubleClick = false;
         } else if ($(event.target).is('td')) {
             this.handleCellClick($(event.target));
         } else if ($(event.target).parent().is('td')) {
@@ -259,15 +262,18 @@ class MRPTable extends Polymer.Element {
             row[headers[rowCounter]] = $(domRow[rowCounter]).text().trim();
         }
 
-        var thisObj = this;
+        if (checkForDoubleClick) {
+            var thisObj = this;
 
-        setTimeout(function () {
-            if (thisObj.get('isDblClick') ===1) {
-                var triggerObj = {cell: cell, row: row, table: thisObj, event: event};
-                Lib.Polymer.triggerEventsWithTable(this, triggerObj, 'mrp-table_clicked');
-                thisObj.set('isDblClick',0);
-            }
-        }, 250);
+            setTimeout(function () {
+                if (thisObj.get('isDblClick') === 1) {
+                    var triggerObj = {cell: cell, row: row, table: thisObj, event: event};
+                    Lib.Polymer.triggerEventsWithTable(this, triggerObj, 'mrp-table_clicked');
+                    thisObj.set('isDblClick', 0);
+                }
+            }, 250);
+        }
+
     }
 
     handleDblClick(event) {
@@ -360,7 +366,7 @@ class MRPTable extends Polymer.Element {
         if (buttonText === "Next") {
             currentPage = currentPage + 1;
             if (currentPage * pageSize > maxLength) {
-                currentPage = Math.ceil((maxLength-1) / pageSize);
+                currentPage = Math.ceil((maxLength - 1) / pageSize);
             }
         } else if (buttonText === "Previous") {
             currentPage = currentPage - 1;
