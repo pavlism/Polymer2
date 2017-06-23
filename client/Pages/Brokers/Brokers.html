@@ -1,16 +1,16 @@
 <template name="Brokers">
     <h2>Brokers</h2>
-Have you ever created function who only purpose is to pass data to its children?  Have you ever tried passing data up long chains of object, to only pass them back down another long chain?  
-<br/><br/>After looking an object I once created I realized that half of the code was simple function that passed information to its children, and many times those children were passing the data down to their children.  It didn’t look great, it was also painful when the data being passed changed.  I eventually learned about the mediator pattern and used that to create Brokers.
-<br/><br/>Brokers are global static objects designed to help object and elements communicate universally.  One object/element can register a listener function with a broker, while another can register a trigger function.  When the trigger is fired the listener function is also activated.  Data can be passed from the object triggering the event, so the listener object can use.
+Have you ever created a function whose only purpose is to pass data to its children?  Have you ever tried passing data up long chains of objects, to only pass them back down another long chain?  
+<br/><br/>After looking at an object I once created I realized where half of the code consisted of simple functions that passed information to its children, and many times those children were passing the data down to their children.  It didn’t look great, it was also painful when the data being passed changed.  I eventually learned about the mediator pattern and used that to create Brokers.
+<br/><br/>Brokers are global static objects designed to help objects and elements communicate universally.  One object/element can register a listener function with a broker, while another can register a trigger function.  When the trigger is fired the listener function is also activated.  Data can be passed from the object triggering the event, so the listener object can use it.
 <img src="/pic1.png" alt=""/>
 <hr>
 <h3>Event Broker</h3>
-The event broker is designed to create custom events the can be triggered and listened to.  For example you can create button like object, and when it’s clicked have a custom event fire that passes specific information along to any object(s)/element(s) listening.  You can have any number of listeners and triggers registers to the same event.  Events don’t have to be tied directly to a user’s action.  
-<br><br>For example an app may have several different ways a user can delete a record from a table (button on table, button in modal pop up, automatic process from other deletions etc).  Your app could also have several places that need updating if a record is deleted (multiple table, drop down etc).  You can create a “delete-record” event.  Each time an object or element want’s to delete a record they could call this event and pass in the ID of the record to delete.  The table object/element could then listen for this event, and handle the actual deletion, after its’ complete it can fire the “record-deleted” event and any object of element that needs to updated itself could listen to that event and update its information.  
+The event broker is designed to create custom events that can be triggered and listened to.  For example you can create a button like object, and when it’s clicked have a custom event fire that passes specific information along to any object(s)/element(s) listening.  You can have any number of listeners and triggers registers to the same event.  Events don’t have to be tied directly to a user’s action.  
+<br><br>For example an app may have several different ways a user can delete a record from a table (button on table, button in modal pop up, automatic process from other deletions etc).  Your app could also have several places that need updating if a record is deleted (multiple tables, drop down etc).  You can create a “delete-record” event.  Each time an object or element want’s to delete a record they could call this event and pass in the ID of the record to delete.  The table object/element could then listen for this event, and handle the actual deletion, after its’ complete it can fire the “record-deleted” event and any object of element that needs to updated itself could listen to that event and update its information.  
 <br><br>This can be useful as requirements change, adding a new delete button is now really simple.
 <img src="/pic2.png" alt=""/>
-To create an event and register a listener or trigger to it, you can simply create the listener or trigger function.  Pass in the event string and the data you want to have available inside the listener function.  All events are string based, so if you create to listeners to the ‘delete-record’ event they will both fire.
+To create an event and register a listener or trigger to it, you can simply create the listener or trigger function.  Pass in the event string and the data you want to have available inside the listener function.  All events are string based, so if you create two listeners to the ‘delete-record’ event they will both fire.
 <h4>Code</h4>
 <pre>   EventBroker.trigger("delete-record", triggerArgs);  //</pre>
 The triggerArgs is an object that get's passed to any listener.
@@ -20,10 +20,10 @@ The triggerArgs is an object that get's passed to any listener.
         console.log(listenerArgs);      
         console.log(triggerArgs);
     });</pre>
-The listenerArgs is an object that gets passed to this listener. The listenerArgs is required because this function will be called from the EventBroker, so the this keyword will be the EventBroker
+The listenerArgs is an object that gets passed to this listener function. The listenerArgs is required because this function will be called from the EventBroker, so the this keyword will be the EventBroker.
 <hr>
 <h3>Data Broker</h3>
-The data broker was designed to pass data between different objects/elements.  Its works a lot like the event broker except there can only be one listener.  The listener return a sets of data, so have multiple function return data would be confusing.
+The data broker was designed to pass data between different objects/elements.  Its works a lot like the event broker except there can only be one listener.  The listener return a set of data, so having multiple functions return data would be confusing.
 <br/><br/>For example let’s say you wanted to get the currently displayed data from an HTML table web component.  If the component has a listener built in then you can simple trigger it.
 <h4>Code</h4>
 <pre>   var tableData = DataBroker.trigger('tableId_CurrentData', triggerArgs));</pre>
@@ -32,7 +32,7 @@ The triggerArgs is an object that get's passed to the listener.
 <pre>   DataBroker.listen('tableId_CurrentData', this, function (listenerArgs, triggerArgs) {
         return listenerArgs.get('currentData');
     });</pre>
-The listenerArgs is an object that gets passed to this listener. The listenerArgs is required because this function will be called from the EventBroker, so the this keyword will be the EventBroker
+The listenerArgs is an object that gets passed to this listener function. The listenerArgs is required because this function will be called from the DataBroker, so the this keyword will be the DataBroker.
 <br/>
 <br/>
 <br/>

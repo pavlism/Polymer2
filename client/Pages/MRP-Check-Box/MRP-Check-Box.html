@@ -40,6 +40,8 @@
     <hr>
     {{>MRPCheckBox_events}}
     <hr>
+    {{>MRPCheckBox_PropTable}}
+    <hr>
     {{>MRPCheckBox_TODO}}
     <br>
     <br>
@@ -72,13 +74,13 @@
     Open the console window and click an &#x3C;mrp-check-box&#x3E; to see an examples of it's events.
     
     <H4>{ID}_mrp-check-box_changed</H4>
-    When an &#x3C;mrp-check-box&#x3E; is checked or unchecked the changed event will fire.  This event will use the ID on the &#x3C;mrp-check-box&#x3E; element.<br>    
+    When a &#x3C;mrp-check-box&#x3E; is checked or unchecked the changed event will fire.  This event will use the ID of the &#x3C;mrp-check-box&#x3E; element.<br>    
     
     <H4>{class}_mrp-check-box_changed</H4>
-    When an &#x3C;mrp-check-box&#x3E; is checked or unchecked the changed event will fire.  This event will use the Class on the &#x3C;mrp-check-box&#x3E; element.
+    When a &#x3C;mrp-check-box&#x3E; is checked or unchecked the changed event will fire.  This event will use the Class of the &#x3C;mrp-check-box&#x3E; element.
     
     <H4>mrp-check-box_changed</H4>
-    When an &#x3C;mrp-check-box&#x3E; is checked or unchecked the changed event will fire.  If the elements does not have an ID or class then this event will fire.
+    When a &#x3C;mrp-check-box&#x3E; is checked or unchecked the changed event will fire.  If the elements does not have an ID or class then this event will fire.
     
     <H4>Sample Listener</H4>
     <pre>
@@ -86,6 +88,19 @@
         console.log('a mrp-check-box box was clicked');
         console.log(triggerArgs);
     });</pre>
+</template>
+
+<template name="MRPCheckBox_PropTable">
+    <h3>Properties</h3>
+    <table class="dataTable">
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        {{> property name='id' type='String' description='The ID of the element.'}}
+        {{> property name='class' type='String' description='The class of the element.'}}
+        {{> property name='disabled' type='Boolean' description='If true then the check box will be disabled.'}}
+        {{> property name='checked' type='Boolean' description='If true then the check box will be checked.'}}
+    </table>
 </template>
 
 <template name="MRPCheckBox_TODO">

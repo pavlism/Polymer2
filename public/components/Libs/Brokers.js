@@ -9,7 +9,7 @@ if (Lib.JS.isUndefined(Broker)) {
 
         this.connections = [];
 
-        var log = new Logger('Broker.js', CLL.warn);
+        var log = new Logger('Broker.js', CLL.debug);
 
         this.addListener = function (connection, listenerArgs, callback) {
             if (Lib.JS.isUndefined(EventBroker.connections[connection])) {
@@ -41,7 +41,7 @@ if (Lib.JS.isUndefined(EventBroker)) {
 
     var creation = function () {
 
-        var log = new Logger('EventBroker.js', CLL.warn);
+        var log = new Logger('EventBroker.js', CLL.debug);
 
         /**
          * This will setup a function to fire when the event(s) is triggered
@@ -88,7 +88,7 @@ if (Lib.JS.isUndefined(EventBroker)) {
             triggerArgs = Lib.JS.setDefaultParameter(triggerArgs, {});
 
             if (Lib.JS.isUndefined(EventBroker.connections[event]) || EventBroker.connections[event].length === 0) {
-                log.warn('the event ' + event + ' does not have any listeners');
+                log.debug('the event ' + event + ' does not have any listeners');
                 return false;
             }
 
@@ -111,7 +111,7 @@ if (Lib.JS.isUndefined(DataBroker)) {
 
     var creation = function () {
 
-        var log = new Logger('DataBroker.js', CLL.warn);
+        var log = new Logger('DataBroker.js', CLL.debug);
 
         /**
          * This will setup a function to fire when the dataCall(s) is triggered
@@ -162,7 +162,7 @@ if (Lib.JS.isUndefined(DataBroker)) {
             triggerArgs = Lib.JS.setDefaultParameter(triggerArgs, {});
 
             if (Lib.JS.isUndefined(DataBroker.connections[dataCall]) || DataBroker.connections[dataCall].length === 0) {
-                log.warn('the dataCall ' + dataCall + ' does not have any listeners');
+                log.debug('the dataCall ' + dataCall + ' does not have any listeners');
                 return false;
             }
 

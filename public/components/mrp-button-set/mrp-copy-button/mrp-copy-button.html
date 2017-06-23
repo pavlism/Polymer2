@@ -1,8 +1,7 @@
 <!--
-V1.0
+V0.1
 
-A <mrp-button> that will copy information from a element to the clipboard and post an <mrp-alert> when completed.
-It's currently designed to work only with tables and <mrp-tables>
+A button that is used to copy data from a <table> into the clipboard in a tab delimited format
 -->
 
 <script src="../../Libs/logger.js"></script>
@@ -18,7 +17,7 @@ It's currently designed to work only with tables and <mrp-tables>
 
   <template>
       <mrp-alert title="[[alertTitle]]" message = "[[alertMessage]]" toggle="{{alert}}" timer=30></mrp-alert>
-      <mrp-button id="[[id]]" on-click="handleClick">Copy</mrp-button>
+      <mrp-button id="[[id]]">Copy</mrp-button>
   </template>
     <script src="mrp-copy-button.js" type="text/javascript"></script>
 </dom-module>

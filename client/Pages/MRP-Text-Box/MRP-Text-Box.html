@@ -53,6 +53,10 @@
     </table>
     <hr>
     {{>MRPTextBox_events}}
+    <hr>
+    {{>MRPTextBox_PropTable}}
+    <hr>
+    {{>MRPTextBox_TODO}}
     <br>
     <br>
     <br>
@@ -91,13 +95,13 @@
     Open the console window and change value of an &#x3C;mrp-text-box&#x3E; to see an examples of it's events.
     
     <H4>{ID}_mrp-text-box_changed</H4>
-    When an &#x3C;mrp-text-box&#x3E; has it's value changed the changed event will fire.  This event will use the ID on the &#x3C;mrp-text-box&#x3E; element.<br>    
+    When a &#x3C;mrp-text-box&#x3E; has it's value changed the changed event will fire.  This event will use the ID of the &#x3C;mrp-text-box&#x3E; element.<br>    
     
     <H4>{class}_mrp-text-box_changed</H4>
-    When an &#x3C;mrp-text-box&#x3E; has it's value changed the changed event will fire.  This event will use the Class on the &#x3C;mrp-text-box&#x3E; element.
+    When a &#x3C;mrp-text-box&#x3E; has it's value changed the changed event will fire.  This event will use the Class of the &#x3C;mrp-text-box&#x3E; element.
     
     <H4>mrp-text-box_changed</H4>
-    When an &#x3C;mrp-text-box&#x3E; has it's value changed the changed event will fire.  If the elements does not have an ID or class then this event will fire.
+    When a &#x3C;mrp-text-box&#x3E; has it's value changed the changed event will fire.  If the elements does not have an ID or class then this event will fire.
     
     <H4>Sample Listener</H4>
     <pre>
@@ -105,4 +109,29 @@
         console.log('a mrp-text-box box was clicked');
         console.log(triggerArgs);
     });</pre>
+</template>
+
+<template name="MRPTextBox_PropTable">
+    <h3>Properties</h3>
+    <table class="dataTable">
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        {{> property name='id' type='String' description='The ID of the element.'}}
+        {{> property name='class' type='String' description='The class of the element.'}}
+        {{> property name='maxlength' type='Number' description='The maxlength of the <input>.'}}
+        {{> property name='value' type='String' description='If not blank this will be the default value of the text box.'}}
+        {{> property name='regex' type='String' description='The regex expression that the text of the text box will be validated against.'}}
+        {{> property name='placeholder' type='String' description='The placeholder of the <input>.'}}
+        {{> property name='validation' type='Number' description='This value will represent the validation status of the element.  0=invalid, 1=valid, -1=default.'}}
+        {{> property name='error-msg' type='String' description='The message displayed when the validation fails.'}}
+        {{> property name='required' type='Boolean' description="If true and empty textbox will not be considered valid, if false, then the element will not test it's validation until it's value it changed."}}
+    </table>
+</template>
+
+<template name="MRPTextBox_TODO">
+    <h3>TODO</h3>
+    <ul>
+        <li>Add in the validation status to the trigger object</li>
+    </ul>
 </template>

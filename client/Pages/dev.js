@@ -1,37 +1,50 @@
 var tableData = new ReactiveArray();
 var files = new ReactiveArray();
 var list = new ReactiveArray();
-var toggle = new ReactiveObject({val:0});
+var toggle = new ReactiveObject({val:false});
 
 Template.dev.onRendered(function () {
        
-    EventBroker.listen('_mrp-Submit-Button_passed', {}, function (listenerArgs, triggerArgs) {
-        if(toggle.val ===0){
-            toggle.val=1;
+    EventBroker.listen('toggleBasic_mrp-button_clicked', {}, function (listenerArgs, triggerArgs) {
+        if(toggle.val ===false){
+            toggle.val=true;
         }else{
-            toggle.val=0;
+            toggle.val=false;
         }
     });
     
     EventBroker.listen('mrp-alert_closed', {}, function (listenerArgs, triggerArgs) {
-        toggle.val=0;
+        toggle.val=false;
     });
     
     tableData.length = 0;
     files.length = 0;
     list.length = 0;
-
-    list.push('one');
-    list.push('2');
-    list.push('3');
+    list.push('SQL');
+    list.push('Java');
+    list.push('Java Script');
+    list.push('C#');
+    list.push('Python');
+    list.push('C++');
+    list.push('PHP');
+    list.push('IOS');
+    list.push('Ruby');
     
     files.push({name:'file name1.pdf'});
     files.push({name:'file name2.pdf'});
     files.push({name:'file name3.pdf'});
     
+    var regex = '^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    var obj = {title:'Mark', prop:{Company:'MRP inc', phone:'519-768-4521'}};
     
-    tableData.push(['#','OrderDate','Region','Rep','Total']);
-    tableData.push(['1','1/6/2016','East','Jones','189.05']);
+    var Link = {link:{href:'http//www.google.ca',text:'google'}};
+    var TextArea = {textArea:{rows:'4',cols:'50', text:'text', value:'value', regex:regex, placeholder:'placeholder', errorMsg:"This is not a valid e-mail address", required:true, id:'str-id', class:'str-class' }};
+    var button = {button:{id:'str-id', class:'str-class', size:MRPButton.sizes.small,color:MRPButton.colors.danger, text:'Add'}};
+    var buttons = {buttons:[{size:MRPButton.sizes.mini,color:MRPButton.colors.info, text:'Add'},{size:MRPButton.sizes.small,color:MRPButton.colors.primary, text:'Add'}]};
+    
+    
+    tableData.push(['#','Order Date','Region','Rep','Total']);
+    tableData.push(['1',obj,button,Link,buttons]);
     tableData.push(['2','1/23/2016','Central','Kivell','999.50']);
     tableData.push(['3','2/9/2016','Central','Jardine','179.64']);
     tableData.push(['4','2/26/2016','Central','Gill','539.73']);

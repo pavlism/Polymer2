@@ -12,6 +12,16 @@
                 {{> MRPDropDown_code1}}
             </td>
         </tr>
+        {{> rowHeader title='<mrp-drop-down> with value/index'}}
+        <tr>
+            <td class='example'>
+                <mrp-drop-down list="{{list}}" value='PHP'></mrp-drop-down>
+                <mrp-drop-down list="{{list}}" index='4'></mrp-drop-down>
+            </td>
+            <td>
+                {{> MRPDropDown_code4}}
+            </td>
+        </tr>
         {{> midRowHeader title='<mrp-drop-down> with ID'}}
         <tr>
             <td class='example'>
@@ -35,6 +45,10 @@
     </table>
     <hr>
     {{>MRPDropDown_events}}
+    <hr>
+    {{>MRPDropDown_PropTable}}
+    <hr>
+    {{>MRPDropDown_TODO}}
     <br>
     <br>
     <br>
@@ -55,18 +69,24 @@
     <pre>&lt;mrp-drop-down list=&apos;["1","two","three"]&apos; class=&apos;sampleClass&apos;&gt;&lt;/mrp-drop-down&gt;</pre>
 </template>
 
+<template name="MRPDropDown_code4">
+    <h4>Code</h4>
+    <pre>&lt;mrp-drop-down list=&apos;{list}&apos; value=&apos;PHP&apos;&gt;&lt;/mrp-drop-down&gt;
+&lt;mrp-drop-down list=&apos;{list}&apos; index=&apos;4&apos;&gt;&lt;/mrp-drop-down&gt;</pre>
+</template>
+
 <template name="MRPDropDown_events">
     <h2>Events</h2>
     Open the console window and change value of an &#x3C;mrp-drop-down&#x3E; to see an examples of it's events.
     
     <H4>{ID}_mrp-drop-down_changed</H4>
-    When an &#x3C;mrp-drop-down&#x3E; has it's value changed the changed event will fire.  This event will use the ID on the &#x3C;mrp-drop-down&#x3E; element.<br>    
+    When a &#x3C;mrp-drop-down&#x3E; has it's value changed the changed event will fire.  This event will use the ID of the &#x3C;mrp-drop-down&#x3E; element.<br>    
     
     <H4>{class}_mrp-drop-down_changed</H4>
-    When an &#x3C;mrp-drop-down&#x3E; has it's value changed the changed event will fire.  This event will use the Class on the &#x3C;mrp-drop-down&#x3E; element.
+    When a &#x3C;mrp-drop-down&#x3E; has it's value changed the changed event will fire.  This event will use the Class of the &#x3C;mrp-drop-down&#x3E; element.
     
     <H4>mrp-drop-down_changed</H4>
-    When an &#x3C;mrp-drop-down&#x3E; has it's value changed the changed event will fire.  If the elements does not have an ID or class then this event will fire.
+    When a &#x3C;mrp-drop-down&#x3E; has it's value changed the changed event will fire.  If the elements does not have an ID or class then this event will fire.
     
     <H4>Sample Listener</H4>
     <pre>
@@ -75,4 +95,21 @@
         console.log(triggerArgs);
     });</pre>
     
+</template>
+
+<template name="MRPDropDown_PropTable">
+    <h3>Properties</h3>
+    <table class="dataTable">
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        {{> property name='id' type='String' description='The ID of the element.'}}
+        {{> property name='class' type='String' description='The class of the element.'}}
+        {{> property name='list' type='Array' description='The array that holds all the list options.'}}
+        {{> property name='value' type='String' description='The current value, can be set to a value (case sensitive) to change the default selected option.'}}
+        {{> property name='index' type='Number' description='The current index, can be set to an index (starts at 0) to change the default selected option.'}}
+    </table>
+</template>
+
+<template name="MRPDropDown_TODO">
 </template>

@@ -31,7 +31,7 @@ Navigation.updateCurrentPage = function (routedPath) {
     }
     var page = routedPath.right(getFrontLoadPos);
     
-    //If not the default page change the highliting to highlight the current page    
+    //If not the default page change the Highlighting to highlight the current page    
     log.trace("updateCurrentPage_document.ready");
     $('ul.nav.navbar-nav').children().each(function () {
         var DELPOS = Lib.JS.getPosition($(this).find("a").prop("href"), "/", 3);

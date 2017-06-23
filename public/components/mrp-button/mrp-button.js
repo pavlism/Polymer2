@@ -1,48 +1,47 @@
+//V0.1
+
 class MRPButton extends Polymer.Element {
-    //A simple button elmeent with some themes.
-    
     static get is() {
         return  'mrp-button';
     }
     static get properties() {
         return {
-            id: {type: String, value: ''},
-            title: {type: String, value: ''},
-            class: {type: String, value: '', reflectToAttribute: true},
-            btnClass: {type: String, value: ''},
-            //passedClass: {type: String, value: ''},
-            primary: {type: Boolean, value: false},
-            success: {type: Boolean, value: false},
-            info: {type: Boolean, value: false},
-            warning: {type: Boolean, value: false},
-            danger: {type: Boolean, value: false},
-            large: {type: Boolean, value: false},
-            small: {type: Boolean, value: false},
-            mini: {type: Boolean, value: false},
-            size: {type: Number, value: 2},
-            color: {type: Number, value: 5},
-            tableRow: {type: String, value: ''}, //used if inside a table
-            propertiesObj: {type: Object, value: function () {
+            id: {type: String, value: ''},                                      //The ID of the element
+            class: {type: String, value: '', reflectToAttribute: true},         //The class of the element
+            title: {type: String, value: ''},                                   //Can be used to add text to the button instead of adding text in between the elements tags
+            btnClass: {type: String, value: ''},                                //Used to setup the colors and size without overwriting any class setup by the user
+            primary: {type: Boolean, value: false},                             //Applies the primary color (green)
+            success: {type: Boolean, value: false},                             //Applies the success color (dark blue)
+            info: {type: Boolean, value: false},                                //Applies the info color (light blue)
+            warning: {type: Boolean, value: false},                             //Applies the warning color (yellow)
+            danger: {type: Boolean, value: false},                              //Applies the danger color (red)
+            large: {type: Boolean, value: false},                               //Applies the large size
+            small: {type: Boolean, value: false},                               //Applies the small size
+            mini: {type: Boolean, value: false},                                //Applies the mini size
+            size: {type: String, value: ''},                                    //Can be set to any size string (large,small,mini) or left blank for the default size
+            color: {type: String, value: ''},                                   //Can be set to any color string (primary,success,info,warning,danger) or left blank for the default color
+            tableRow: {type: String, value: ''},                                //Used if inside a table, it's set to the row number this element is in.
+            propertiesObj: {type: Object, value: function () {                  //Used to set the properties with an object instead of individually.  Works  with get propertiesObj().
                     return {};
                 }
-            }       //Can be used to set all the properties of this element instead of using the properties in the tag.
+            }
         };
     }
 
     static get propertiesObj() {
-        //return a default property object.
-        return {id: '', class: '', text: '', size: 2, color: 5, tableRow: ''};
+        //used to help user setup this element using an object instead of by assigning all the properties in the HTML
+        return {id: '', class: '', text: '', size: '', color: '', tableRow: ''};
     }
     val() {
+        //Used to create a string representation of this element, for now <mrp-button>s are just empty strings.
         return "";
     }
 
     ready() {
         super.ready();
         var propertiesObj = this.get('propertiesObj');
-        //If the property object was used then update all the properties
-        
         if (!$.isEmptyObject(propertiesObj)) {
+            //The propertiesObj was set then use the size and color values to set the appropriate properties
             if (Lib.JS.isDefined(propertiesObj.id)) {
                 this.set('id', propertiesObj.id);
             }
@@ -61,9 +60,8 @@ class MRPButton extends Polymer.Element {
                 this.set(propertiesObj.color, true);
             }
         }
-        
-        //If the theme booleans have be used then setup the classes to match
 
+        //Check the properties and setup the appropriate classes for the size and color of the button
         var btnClass = '';
         //setup class
         if (this.get('primary')) {
@@ -89,13 +87,13 @@ class MRPButton extends Polymer.Element {
     }
 
     handleClick(event) {
-        //When clicked fire a click event
+        //If clicked fire the event triggers
         var triggerObj = {button: this, event: event};
         Lib.Polymer.triggerEventsWithTable(this, triggerObj, 'mrp-button_clicked');
     }
 }
 customElements.define(MRPButton.is, MRPButton);
 
-//simple enum objects.  String are used instead of number so then can be used to activate properties without having a large if statment.
+//enum like objecs for size and color, string are used so the values can be reference directly
 MRPButton.sizes = {large: 'large', small: 'small', mini: 'mini', default: ''};
 MRPButton.colors = {primary: 'primary', success: 'success', info: 'info', warning: 'warning', danger: 'danger', default: '', green: 'primary', darkBlue: 'success', lightBlue: 'info', yellow: 'warning', red: 'danger', grey: ''};

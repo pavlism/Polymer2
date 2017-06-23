@@ -51,6 +51,8 @@
     <hr>
     {{>MRPAlert_events}}
     <hr>
+    {{>MRPAlert_PropTable}}
+    <hr>
     {{>MRPAlert_TODO}}
     <br>
     <br>
@@ -85,10 +87,10 @@
 <template name="MRPAlert_events">
     <h2>Events</h2>
     <H4>{ID}_mrp-alert_closed</H4>
-    When an &#x3C;mrp-alert&#x3E; is closed the closed event will fire.  This event will use the ID on the &#x3C;mrp-alert&#x3E; element.
+    When a &#x3C;mrp-alert&#x3E; is closed the closed event will fire.  This event will use the ID of the &#x3C;mrp-alert&#x3E;.
     
     <H4>mrp-alert_closed</H4>
-    When an &#x3C;mrp-alert&#x3E; is clicked the closed event will fire.  If the elements does not have an ID or class then this event will fire.
+    When a &#x3C;mrp-alert&#x3E; is clicked the closed event will fire.  If the elements does not have an ID then this event will fire.
     
     <H4>Sample Listener</H4>
     <pre>
@@ -102,10 +104,27 @@
     EventBroker.trigger("turnOnAlert_12"});</pre>
 </template>
 
+<template name="MRPAlert_PropTable">
+    <h3>Properties</h3>
+    <table class="dataTable">
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        {{> property name='id' type='String' description='The ID of the element.'}}
+        {{> property name='title' type='String' description='The title of the alert box.'}}
+        {{> property name='message' type='String' description='The message inside the alert box.'}}
+        {{> property name='toggle' type='Boolean' description='Can be data-bound to turn the alert on/off, false=off, true=on.'}}
+        {{> property name='on-event' type='String' description='An eventName, when triggered it will display the alert.'}}
+        {{> property name='off-event' type='String' description='An eventName, when triggered it will hide the alert.'}}
+        {{> property name='timer' type='Number' description='If set when the alert is displayed a timer will be created to hide the alert after the timer value in seconds.'}}
+    </table>
+</template>
+
 <template name="MRPAlert_TODO">
     <h3>TODO</h3>
     <ul>
         <li>Add in more options for button combinations</li>
         <li>Add in more theme options</li>
+        <li>Add in class??</li>
     </ul>
 </template>

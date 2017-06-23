@@ -1,3 +1,10 @@
+<!--
+V0.1
+
+The table element requires an ID, and a 2D array of data passed in. The first row of the array will become the headers. Each other row will become the data.
+No css styling is required because it's all done inside of the element itself.
+-->
+
 <script src="../Libs/logger.js"></script>
 <script src="../Libs/JSLIB.js"></script>
 <script src="../Libs/Brokers.js"></script>
@@ -17,21 +24,25 @@
         <style include="mrp-table-style"></style>
         
         <template is="dom-if" if="[[search]]">
+            <!-- If the search property is true then add in the search text box-->
             <span class="text"><b>Search:</b></span><mrp-text-box type="text" name="search" on-keyup="keyup"></mrp-text-box>
         </template>
         
         <template is="dom-if" if="[[buttons]]">
-            <mrp-csv-button data-call="[[id]]_CurrentTableElement"></mrp-csv-button>
-            <mrp-excel-button data-call="[[id]]_CurrentTableElement"></mrp-excel-button>
-            <mrp-copy-button data-call="[[id]]_CurrentTableElement"></mrp-copy-button>
-            <mrp-print-button data-call="[[id]]_CurrentTableElement"></mrp-print-button>
-            <mrp-pdf-button data-call="[[id]]_CurrentTableElement"></mrp-pdf-button>
+            <!-- If the button property is true then add in the CSV, Excel, PDF, copy and print buttons-->
+            <mrp-csv-button data-call="[[id]]_CurrentData"></mrp-csv-button>
+            <mrp-excel-button data-call="[[id]]_CurrentData"></mrp-excel-button>
+            <mrp-copy-button data-call="[[id]]_CurrentData"></mrp-copy-button>
+            <mrp-print-button data-call="[[id]]_CurrentData"></mrp-print-button>
+            <mrp-pdf-button data-call="[[id]]_CurrentData"></mrp-pdf-button>
         </template>
         
         <table id="[[id]]_table" class$="[[class]]" on-click='handleClick' on-double-click="handleDblClick">
             <thead>
+                <!-- Building the headers from the first row of data in the 2D array of data -->
                 <tr>
                     <template is="dom-if" if="[[select]]">
+                        <!-- If the property option is true add and extra column to the left of the table with <mrp-check-box>s, this adds the header for that column-->
                         <th class='selectBox'></th>
                     </template>
                     <template is="dom-repeat" items="[[getHeader(data)]]">
@@ -41,26 +52,37 @@
             </thead>
             <tbody>
                 <template is="dom-repeat" items="{{data}}" as="row" filter="{{searchFilter(searchString, data)}}" index-as="row_no" observe="searchString">
+                    <!-- setup the filter for the table to work with the search bar-->
                     <template is="dom-if" if="{{showRow(row_no,0,pageListValue, currentPage)}}">
+                        <!-- The showRow if is used to skip the first row of data and all appropriate rows when the paging option is true-->
                         <tr>
                             <template is="dom-if" if="[[select]]">
+                                <!-- If the property option is true add and extra column to the left of the table with <mrp-check-box>-->
                                 <td class='selectBox'><mrp-check-box class="[[id]]_checkBox_" table-row="[[row_no]]"></mrp-check-box></td>
                             </template>
                             <template is="dom-repeat" items="{{row}}" as="cell">
                                 <td>
+                                    <!-- Adding the cells of the row based on the data of each object in the 2D array-->
                                     <template is="dom-if" if="[[matchCellType(cell, 'cell')]]">
+                                        <!-- If the data is simple text then simply display the text-->
                                         [[cell]]
                                     </template>
                                     <template is="dom-if" if="![[matchCellType(cell, 'cell')]]">
+                                        <!-- If the data is not simple text then determine which type the data matches-->
                                         <template is="dom-if" if="[[matchCellType(cell, 'buttons')]]">
+                                            <!-- If the data is a list of buttons object, then loop through the list and add in the buttons -->
                                             <template is="dom-repeat" items="[[cell.buttons]]" as="button">
                                                 <mrp-button properties-obj ="[[button]]" table-row="[[row_no]]">[[button.text]]</mrp-button>
                                             </template>
                                         </template>
                                         <template is="dom-if" if="[[matchCellType(cell, 'button')]]">
+                                            <!-- If the data is a button object then add the button -->
                                             <mrp-button properties-obj ="[[cell.button]]" table-row="[[row_no]]">[[cell.button.text]]</mrp-button>
                                         </template>
                                         <template is="dom-if" if="[[matchCellType(cell, 'object')]]">
+                                            <!-- If the data is an object with a title property, then display the title, and hide the rest of the text inside the object
+                                                Add a div that can be clicked to reveal the rest of the text
+                                            -->
                                             <span class="object-toggle"></span>[[cell.title]]
                                             <div class="properties">
                                                 <template is="dom-repeat" items="[[getProps(cell)]]">
@@ -69,9 +91,11 @@
                                             </div>
                                         </template>
                                         <template is="dom-if" if="[[matchCellType(cell, 'link')]]">
+                                            <!-- If the data is a link object then build the <a>-->
                                             <a target="_blank" href='[[cell.link.href]]'>[[cell.link.text]]</a>
                                         </template>
                                         <template is="dom-if" if="[[matchCellType(cell, 'textArea')]]">
+                                            <!-- If the data is a textArea object then build the <mrp-text-area>-->
                                             <mrp-text-area properties-obj ="[[cell.textArea]]" table-row="[[row_no]]"></mrp-text-area>
                                         </template>
                                     </template>                    
@@ -82,6 +106,7 @@
                 </template>
             
                 <template is="dom-if" if="[[footer]]">
+                    <!-- If the footer property is true then add the header row to the bottom of the table-->
                     <tr>
                         <template is="dom-if" if="[[select]]">
                             <th class='selectBox'></th>
@@ -94,6 +119,7 @@
             </tbody>
         </table>
         <template is="dom-if" if="[[pages]]">
+            <!-- If the pages property is true then add the paging buttons below the table-->
             <div class='pages'>
                 <mrp-button on-click="handleClick">Previous</mrp-button>
                 <template is="dom-repeat" items="[[getPages(maxLength,pageListValue)]]">

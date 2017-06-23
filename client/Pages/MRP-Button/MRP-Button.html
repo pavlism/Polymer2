@@ -60,6 +60,8 @@
         {{> rowHR}}
     </table>
     {{>MRP_Button_events}}
+    <hr>
+    {{>MRP_Button_PropTable}}
     <br>
     <br>
     <br>
@@ -106,13 +108,13 @@
     Open the console window and click an &#x3C;mrp-button&#x3E; to see an examples of it's events.
     
     <H4>{ID}_mrp-button_clicked</H4>
-    When an &#x3C;mrp-button&#x3E; is clicked the clicked event will fire.  This event will use the ID on the &#x3C;mrp-button&#x3E; element.
+    When a &#x3C;mrp-button&#x3E; is clicked the clicked event will fire.  This event will use the ID of the &#x3C;mrp-button&#x3E;.
     
     <H4>{class}_mrp-button_clicked</H4>
-    When an &#x3C;mrp-button&#x3E; is clicked the clicked event will fire.  This event will use the Class on the &#x3C;mrp-button&#x3E; element.
+    When a &#x3C;mrp-button&#x3E; is clicked the clicked event will fire.  This event will use the Class of the &#x3C;mrp-button&#x3E;.
     
     <H4>mrp-button_clicked</H4>
-    When an &#x3C;mrp-button&#x3E; is clicked the clicked event will fire.  If the elements does not have an ID or class then this event will fire.
+    When a &#x3C;mrp-button&#x3E; is clicked the clicked event will fire.  If the elements does not have an ID or class then this event will fire.
     
     <H4>Sample Listener</H4>
     <pre>
@@ -120,4 +122,26 @@
         console.log('A button was clicked');
         console.log(triggerArgs);
     });</pre>
+</template>
+
+
+<template name="MRP_Button_PropTable">
+    <h3>Properties</h3>
+    <table class="dataTable">
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        {{> property name='id' type='String' description='The ID of the element.'}}
+        {{> property name='class' type='String' description='The class of the element.'}}
+        {{> property name='primary' type='Boolean' description='Applies the primary color (green).'}}
+        {{> property name='success' type='Boolean' description='Applies the success color (dark blue).'}}
+        {{> property name='info' type='Boolean' description='Applies the info color (light blue).'}}
+        {{> property name='warning' type='Boolean' description='Applies the warning color (yellow).'}}
+        {{> property name='danger' type='Boolean' description='Applies the danger color (red).'}}
+        {{> property name='large' type='Boolean' description='Applies the large size.'}}
+        {{> property name='small' type='Boolean' description='Applies the small size.'}}
+        {{> property name='mini' type='Boolean' description='Applies the mini size.'}}
+        {{> property name='size' type='String' description='Can be set to any size string (large,small,mini) or left blank for the default size.'}}
+        {{> property name='color' type='String' description='Can be set to any color string (primary,success,info,warning,danger) or left blank for the default color.'}}       
+    </table>
 </template>

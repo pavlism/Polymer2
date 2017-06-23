@@ -1,13 +1,11 @@
 <!--
-V1.0
+V0.11
 
-The alert elements is a nicer looking version of the alert message box.  Its used to display a simple message to the user.  It does not have many theme options yet.
-To toggle an alert you have 2 different options.  1 you can set the toggle property to a variable, then change that variable, 1 is on 0 if off.
+The alert elements is a nicer looking version of the alert message box.  Its used to display a simple message to the user.  It does not have many theme options yet.<br/>
+To toggle an alert you have 2 different options.  1 you can set the toggle property to a variable, then change that variable, 1 is on 0 if off.<br/>
 The second option is to use the on-event and off-even attributes.  Set either of them to a string that is the EventBroker event you want to trigger the alert.
+
 -->
-
-
-
 
 <script src="../Libs/logger.js"></script>
 <script src="../Libs/JSLIB.js"></script>
@@ -17,7 +15,7 @@ The second option is to use the on-event and off-even attributes.  Set either of
 <link rel="import" href="mrp-alert-style.html">
 <link rel="import" href="../mrp-button/mrp-button.html">
 
-<dom-module id="mrp-alert">
+<dom-module id="mrp-alert">    
     <template>
         <style include="mrp-alert-style"></style>
         <div class="alert" id=[[id]]>

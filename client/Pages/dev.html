@@ -1,4 +1,6 @@
 <template name="dev"> 
+    Used for development purposes.
+    
     <!--<mrp-table data='{{tableData}}' search pages buttons></mrp-table>-->
     <!--<x-custom></x-custom>
     <mrp-text-box maxlength="5" regex="ab*" error-msg="must match the regex ab* tom" required placeholder="test"></mrp-text-box>
@@ -8,7 +10,56 @@
     <mrp-text-box id="email" type="text" placeholder="Please provide us with your email address" size="50" regex='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$' error-msg="This is not a valid e-mail address"></mrp-text-box>
     <textarea rows="3" cols="5" placeholder="asdasd"></textarea>
     <mrp-table id='table' data='{{tableData}}' buttons></mrp-table>
-    -->
+    <mrp-drop-down list="{{list}}" value='PHP'></mrp-drop-down>
+        <mrp-drop-down list="{{list}}" index='2'></mrp-drop-down>
     
-    <mrp-table id='table' data='{{tableData}}' pages></mrp-table>
+    <mrp-table id='table' data='{{tableData}}' sort search buttons pages></mrp-table>
+    
+    
+    <mrp-table id='table' data='{{tableData}}' sort search buttons pages></mrp-table>
+    
+    <mrp-csv-button data-selector="#table2"></mrp-csv-button>
+    <mrp-copy-button data-selector="#table2"></mrp-copy-button>
+    <mrp-excel-button data-selector="#table2"></mrp-excel-button>
+    <mrp-pdf-button data-selector="#table2"></mrp-pdf-button>
+    <mrp-print-button data-selector="#table2"></mrp-print-button>
+    
+        <table id='table2'>
+  <tr>
+    <th>Company</th>
+    <th>Contact</th>
+    <th>Country</th>
+  </tr>
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Maria Anders</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+  </tr>
+  <tr>
+    <td>Ernst Handel</td>
+    <td>Roland Mendel</td>
+    <td>Austria</td>
+  </tr>
+  <tr>
+    <td>Island Trading</td>
+    <td>Helen Bennett</td>
+    <td>UK</td>
+  </tr>
+  <tr>
+    <td>Laughing Bacchus Winecellars</td>
+    <td>Yoshi Tannamuri</td>
+    <td>Canada</td>
+  </tr>
+  <tr>
+    <td>Magazzini Alimentari Riuniti</td>
+    <td>Giovanni Rovelli</td>
+    <td>Italy</td>
+  </tr>
+</table>
+    -->
 </template>

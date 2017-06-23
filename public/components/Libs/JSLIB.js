@@ -1,4 +1,4 @@
-//V1.1
+//V0.11
 
 //A library used to make JS coding easier and add some simple function to JS
 
@@ -615,6 +615,34 @@ if (typeof JSLib === 'undefined') {
                 returnString = returnString + array[counter].toString();
             }
             return returnString;
+        };
+        /**
+         * This will take a 2D array and create a string.  You can add in row an dcol delimiters.
+         * 
+         * @param array {array} The array the will be copied
+         * @param colDel {string} The column delimiter, blank by default
+         * @param rowDel {string} The row delimiter, blank by default
+         * @return {array} Returns a new array not connected to the old one
+         */
+        Lib.JS.array2DToString = function (array, colDel = '', rowDel = '') {
+            log.trace("arrayToString");
+            var str = '';
+            for (var rowCounter = 0; rowCounter < array.length; rowCounter++) {
+                var row = '';
+                for (var colCounter = 0; colCounter < array[rowCounter].length; colCounter++) {
+                    if (row === '') {
+                        row = array[rowCounter][colCounter];
+                    } else {
+                        row = row + colDel + array[rowCounter][colCounter];
+                    }
+                }
+                if (str === '') {
+                    str = row;
+                } else {
+                    str = str + rowDel + row;
+                }
+            }
+            return str;
         };
         /**
          * This will generate a randome int using the min and max as the range, inclusive
